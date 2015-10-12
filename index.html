@@ -21,7 +21,7 @@
 			#tbox {
 				width: 50%;
 				height: 100%;
-				border: 0;
+				border:0;
 				box-sizing: border-box;
 				float: left;
 				padding: 20px;
@@ -46,7 +46,9 @@
 		  <script>
 		  	var box = document.getElementById("tbox");
 		  	box.value = localStorage.getItem('value');
-		  	markedValue(box.value);
+		  	if (localStorage.getItem('content')) {
+			  	markedValue(localStorage.getItem('content'));
+		  	}
 		  	marked.setOptions({
 		  		renderer: new marked.Renderer(),
 				  gfm: true,
@@ -62,6 +64,7 @@
 		  		console.log(this.value);
 		  		markedValue(this.value);
 		  		localStorage.setItem('value',this.value);
+		  		localStorage.setItem('content',document.getElementById('content').innerHTML);
 		  	}
 		  	function markedValue(value) {
 		  		document.getElementById('content').innerHTML = marked(value);
